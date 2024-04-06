@@ -59,6 +59,9 @@ module.exports = {
      * This is what enables users to leave off the extension when importing
      */
     extensions: [".js", ".jsx", ".json"],
+    alias: {
+      '#components': path.resolve(__dirname, "src/components/"),
+    },
   },
   module: {
     /** "rules"
