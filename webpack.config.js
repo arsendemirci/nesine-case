@@ -61,6 +61,7 @@ module.exports = {
     extensions: [".js", ".jsx", ".json"],
     alias: {
       "#components": path.resolve(__dirname, "src/components/"),
+      "#arrayUtils": path.resolve(__dirname, "src/utils/arrayUtils.js"),
     },
   },
   module: {
