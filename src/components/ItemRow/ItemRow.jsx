@@ -1,5 +1,5 @@
 import React from "react";
-import "./ItemRow.css";
+import "./ItemRow.scss";
 
 const ItemRow = ({ item }) => {
   return (

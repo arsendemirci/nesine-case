@@ -60,7 +60,7 @@ module.exports = {
      */
     extensions: [".js", ".jsx", ".json"],
     alias: {
-      '#components': path.resolve(__dirname, "src/components/"),
+      "#components": path.resolve(__dirname, "src/components/"),
     },
   },
   module: {
@@ -77,8 +77,8 @@ module.exports = {
         use: "babel-loader", //loader which we are going to use
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
