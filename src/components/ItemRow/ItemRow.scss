@@ -1,9 +1,21 @@
-.topRow {
-  display: table;
-  width: 100%;
-  > div {
-    display: table-cell;
-    width: 100px;
-    border-bottom: 1px solid #eee;
+tr {
+  td {
+    border: 1px solid;
+    .topRow {
+      display: table;
+      width: 100%;
+      &:not(:last-child) {
+        border-bottom: 1px solid;
+      }
+
+      > div {
+        &:not(:first-child) {
+          border-left: 1px solid;
+        }
+
+        display: table-cell;
+        width: 100px;
+      }
+    }
   }
 }

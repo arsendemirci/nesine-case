@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { ItemRow } from "#components";
 const data = [
   {
@@ -313,7 +313,7 @@ const data = [
 const App = () => {
   return (
     <div>
-      <table border="1" width="100%">
+      <table>
         <tbody>
           {data.map((item, index) => {
             return <ItemRow item={item} key={index}></ItemRow>;
