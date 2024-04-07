@@ -16,7 +16,7 @@ const Coupon = () => {
           ))}
         </ul>
       )}
-      <div>Toplam Tutar : 0 TL</div>
+      <div>Toplam Tutar : {ctx.totalPrice} TL</div>
     </div>
   );
 };

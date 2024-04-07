@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ItemRow.scss";
 import { CouponContext } from "#couponContext";
 import { resolve } from "#arrayUtils";
@@ -7,10 +7,24 @@ import { resolve } from "#arrayUtils";
   ama daha dinamik bir yapi olusturmak istersek resolve kullanmamiz gerekir. */
 const ItemRow = ({ item }) => {
   const ctx = useContext(CouponContext);
+  const [selectedRate, setSelectedRate] = useState({ code: "", rate: "" });
 
-  const onClickHandler = (rate) => {
-    ctx.onAddItem({ rate: 3.14, code: "5353", game: "fadsf maçı", no: 4 });
+  const onSelectHandler = (no, code, game, rate) => {
+    const { code: sCode, rate: sRate } = selectedRate;
+    if (sCode === code && sRate === rate) {
+      // const { code: selectedCode, rate: selectedRate } = selectedRate;
+      //TODO: remove from context items
+      ctx.removeItem(code);
+      setSelectedRate({ code: "", rate: "" });
+    } else {
+      setSelectedRate({ code, rate });
+      ctx.addItem({ no, code, game, rate });
+    }
   };
+
+  useEffect(() => {
+    console.log("selectedRate", selectedRate);
+  }, [selectedRate]);
   return (
     <tr>
       <td>
@@ -43,13 +57,73 @@ const ItemRow = ({ item }) => {
           </div>
           <div className="cell-md">Yorumlar</div>
           <div>{item["OCG"]["1"]["MBS"]}</div>
-          <div onClick={onClickHandler}>{resolve("OCG.1.OC.0.O", item)}</div>
-          <div onClick={onClickHandler}>{resolve("OCG.1.OC.1.O", item)}</div>
+          <div
+            className={`selectable ${
+              selectedRate.rate == item["OCG"]["1"]["OC"]["0"]["O"]
+                ? "selected"
+                : ""
+            }`}
+            onClick={() =>
+              onSelectHandler(
+                item["OCG"]["1"]["MBS"],
+                item["C"],
+                item["N"],
+                item["OCG"]["1"]["OC"]["0"]["O"]
+              )
+            }
+          >
+            {resolve("OCG.1.OC.0.O", item)}
+          </div>
+          <div
+            className={`selectable ${
+              selectedRate.rate == item["OCG"]["1"]["OC"]["1"]["O"]
+                ? "selected"
+                : ""
+            }`}
+            onClick={() =>
+              onSelectHandler(
+                item["OCG"]["1"]["MBS"],
+                item["C"],
+                item["N"],
+                item["OCG"]["1"]["OC"]["1"]["O"]
+              )
+            }
+          >
+            {resolve("OCG.1.OC.1.O", item)}
+          </div>
           <div></div>
-          <div onClick={onClickHandler}>
+          <div
+            className={`selectable ${
+              selectedRate.rate == item["OCG"]["5"]["OC"]["25"]["O"]
+                ? "selected"
+                : ""
+            }`}
+            onClick={() =>
+              onSelectHandler(
+                item["OCG"]["1"]["MBS"],
+                item["C"],
+                item["N"],
+                item["OCG"]["5"]["OC"]["25"]["O"]
+              )
+            }
+          >
             {item["OCG"]["5"]["OC"]["25"]["O"]}
           </div>
-          <div onClick={onClickHandler}>
+          <div
+            className={`selectable ${
+              selectedRate.rate == item["OCG"]["5"]["OC"]["26"]["O"]
+                ? "selected"
+                : ""
+            }`}
+            onClick={() =>
+              onSelectHandler(
+                item["OCG"]["1"]["MBS"],
+                item["C"],
+                item["N"],
+                item["OCG"]["5"]["OC"]["26"]["O"]
+              )
+            }
+          >
             {item["OCG"]["5"]["OC"]["26"]["O"]}
           </div>
           <div></div>

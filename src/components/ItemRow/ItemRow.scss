@@ -9,6 +9,8 @@ tr {
       }
 
       > div {
+        user-select: none;
+
         line-break: anywhere;
 
         vertical-align: middle;
@@ -16,6 +18,7 @@ tr {
 
         min-width: 50px;
         padding: 1px 3px 1px 3px;
+        transition: all 0.18s ease;
         &:not(:first-child) {
           border-left: 1px solid;
           text-align: center;
@@ -26,6 +29,15 @@ tr {
         }
         &.cell-md {
           min-width: 75px;
+        }
+        &.selected {
+          background-color: yellow;
+        }
+        &.selectable {
+          cursor: pointer;
+          &:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.878);
+          }
         }
       }
       &.row-value {
