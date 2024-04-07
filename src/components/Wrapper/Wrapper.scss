@@ -1,0 +1,75 @@
+table {
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+  overflow: auto;
+  &.table-data {
+    padding-top: 50px;
+    position: absolute;
+    top: 53px;
+    left: 8px;
+    width: calc(100% - 16px);
+    background: white;
+  }
+  &.table-head {
+    top: 0;
+    height: 50px;
+    background-color: rgb(196, 196, 196);
+    position: fixed;
+    left: 8px;
+    width: calc(100% - 16px);
+    z-index: 2;
+    text-align: center;
+    .row-header {
+      height: 50px;
+    }
+  }
+  tr {
+    td {
+      border: 1px solid;
+      .topRow {
+        display: table;
+        width: 100%;
+        &:not(:last-child) {
+          border-bottom: 1px solid;
+        }
+
+        > div {
+          user-select: none;
+
+          line-break: anywhere;
+
+          vertical-align: middle;
+          display: table-cell;
+
+          min-width: 50px;
+          padding: 1px 3px 1px 3px;
+          transition: all 0.18s ease;
+          &:not(:first-child) {
+            border-left: 1px solid;
+            text-align: center;
+          }
+
+          &.cell-lg {
+            min-width: 350px;
+          }
+          &.cell-md {
+            min-width: 75px;
+          }
+          &.selected {
+            background-color: yellow;
+          }
+          &.selectable {
+            cursor: pointer;
+            &:hover {
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.878);
+            }
+          }
+        }
+        &.row-value {
+          height: 40px;
+        }
+      }
+    }
+  }
+}
