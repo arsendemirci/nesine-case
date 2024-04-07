@@ -1,30 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./ItemRow.scss";
-import { CouponContext } from "#couponContext";
+import React, { memo, useState, useCallback } from "react";
 import { resolve } from "#arrayUtils";
 /* resolve methodunu ornek olarak biraktim oncelik performans oldugu icin
   `item["OCG"]["5"]["OC"]["26"]["N"]` seklinde erismek en hizlisi olacaktir.
   ama daha dinamik bir yapi olusturmak istersek resolve kullanmamiz gerekir. */
-const ItemRow = ({ item }) => {
-  const ctx = useContext(CouponContext);
+const ItemRow = memo(({ item, onSelect }) => {
+  console.log("item row rendering");
+
   const [selectedRate, setSelectedRate] = useState({ code: "", rate: "" });
 
-  const onSelectHandler = (no, code, game, rate) => {
-    const { code: sCode, rate: sRate } = selectedRate;
-    if (sCode === code && sRate === rate) {
-      // const { code: selectedCode, rate: selectedRate } = selectedRate;
-      //TODO: remove from context items
-      ctx.removeItem(code);
-      setSelectedRate({ code: "", rate: "" });
-    } else {
-      setSelectedRate({ code, rate });
-      ctx.addItem({ no, code, game, rate });
-    }
-  };
+  const onSelectHandler = useCallback(
+    (no, code, game, rate) => {
+      const { code: sCode, rate: sRate } = selectedRate;
+      let add = false;
+      if (sCode === code && sRate === rate) {
+        setSelectedRate({ code: "", rate: "" });
+      } else {
+        add = true;
+        setSelectedRate({ code, rate });
+      }
+      onSelect(no, code, game, rate, add);
+    },
+    [selectedRate]
+  );
 
-  useEffect(() => {
-    console.log("selectedRate", selectedRate);
-  }, [selectedRate]);
   return (
     <tr>
       <td>
@@ -34,8 +32,9 @@ const ItemRow = ({ item }) => {
           </div>
           <div className="cell-md"> Yorumlar</div>
           <div></div>
+          {/** resolve kullanimi ornek */}
           <div>{resolve("OCG.1.OC.0.N", item)}</div>
-          <div>{resolve("OCG.1.OC.1.N", item)}</div>
+          <div>{item["OCG"]["1"]["OC"]["1"]["N"]}</div>
           <div>2</div>
           <div>{item["OCG"]["5"]["OC"]["25"]["N"]}</div>
           <div>{item["OCG"]["5"]["OC"]["26"]["N"]}</div>
@@ -72,7 +71,7 @@ const ItemRow = ({ item }) => {
               )
             }
           >
-            {resolve("OCG.1.OC.0.O", item)}
+            {item["OCG"]["1"]["OC"]["0"]["O"]}
           </div>
           <div
             className={`selectable ${
@@ -89,7 +88,7 @@ const ItemRow = ({ item }) => {
               )
             }
           >
-            {resolve("OCG.1.OC.1.O", item)}
+            {item["OCG"]["1"]["OC"]["1"]["O"]}
           </div>
           <div></div>
           <div
@@ -141,6 +140,6 @@ const ItemRow = ({ item }) => {
       </td>
     </tr>
   );
-};
+});
 
 export default ItemRow;
