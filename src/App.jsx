@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.scss";
-import { ItemRow } from "#components";
+import { ItemRow, Coupon } from "#components";
+import { CouponProvider } from "#couponContext";
 const data = [
   {
     C: "2002",
@@ -312,15 +313,18 @@ const data = [
 
 const App = () => {
   return (
-    <div>
-      <table>
-        <tbody>
-          {data.map((item, index) => {
-            return <ItemRow item={item} key={index}></ItemRow>;
-          })}
-        </tbody>
-      </table>
-    </div>
+    <CouponProvider>
+      <Coupon />
+      <div>
+        <table>
+          <tbody>
+            {data.map((item, index) => {
+              return <ItemRow item={item} key={index}></ItemRow>;
+            })}
+          </tbody>
+        </table>
+      </div>
+    </CouponProvider>
   );
 };
 

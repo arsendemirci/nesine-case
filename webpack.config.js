@@ -62,6 +62,7 @@ module.exports = {
     alias: {
       "#components": path.resolve(__dirname, "src/components/"),
       "#arrayUtils": path.resolve(__dirname, "src/utils/arrayUtils.js"),
+      "#couponContext": path.resolve(__dirname, "src/state/CouponContext.js"),
     },
   },
   module: {

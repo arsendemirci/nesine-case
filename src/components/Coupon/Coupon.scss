@@ -1,0 +1,22 @@
+.coupon-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+  border: 1px solid;
+  box-shadow: 0 0 16px #8080809e;
+  display: flex;
+  align-items: flex-start;
+  width: 400px;
+  flex-direction: column;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    margin: 10px 0;
+    li {
+      padding: 10px;
+      border-bottom: 1px solid;
+    }
+  }
+}

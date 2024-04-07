@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ItemRow.scss";
+import { CouponContext } from "#couponContext";
 import { resolve } from "#arrayUtils";
 /* resolve methodunu ornek olarak biraktim oncelik performans oldugu icin
   `item["OCG"]["5"]["OC"]["26"]["N"]` seklinde erismek en hizlisi olacaktir.
   ama daha dinamik bir yapi olusturmak istersek resolve kullanmamiz gerekir. */
 const ItemRow = ({ item }) => {
+  const ctx = useContext(CouponContext);
+
+  const onClickHandler = (rate) => {
+    ctx.onAddItem({ rate: 3.14, code: "5353", game: "fadsf maçı", no: 4 });
+  };
   return (
     <tr>
       <td>
@@ -37,11 +43,15 @@ const ItemRow = ({ item }) => {
           </div>
           <div className="cell-md">Yorumlar</div>
           <div>{item["OCG"]["1"]["MBS"]}</div>
-          <div>{resolve("OCG.1.OC.0.O", item)}</div>
-          <div>{resolve("OCG.1.OC.1.O", item)}</div>
+          <div onClick={onClickHandler}>{resolve("OCG.1.OC.0.O", item)}</div>
+          <div onClick={onClickHandler}>{resolve("OCG.1.OC.1.O", item)}</div>
           <div></div>
-          <div>{item["OCG"]["5"]["OC"]["25"]["O"]}</div>
-          <div>{item["OCG"]["5"]["OC"]["26"]["O"]}</div>
+          <div onClick={onClickHandler}>
+            {item["OCG"]["5"]["OC"]["25"]["O"]}
+          </div>
+          <div onClick={onClickHandler}>
+            {item["OCG"]["5"]["OC"]["26"]["O"]}
+          </div>
           <div></div>
           <div></div>
           <div></div>

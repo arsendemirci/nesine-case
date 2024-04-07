@@ -13,7 +13,8 @@ tr {
 
         vertical-align: middle;
         display: table-cell;
-        width: 50px;
+
+        min-width: 50px;
         padding: 1px 3px 1px 3px;
         &:not(:first-child) {
           border-left: 1px solid;
@@ -21,10 +22,10 @@ tr {
         }
 
         &.cell-lg {
-          width: 150px;
+          min-width: 350px;
         }
         &.cell-md {
-          width: 75px;
+          min-width: 75px;
         }
       }
       &.row-value {
