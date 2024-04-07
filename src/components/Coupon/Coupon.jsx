@@ -11,12 +11,12 @@ const Coupon = () => {
         <ul>
           {ctx.items.map((item, index) => (
             <li className="coupon-item" key={index}>
-              4 Kod: {item.code} Maç: {item.game} Oran: <b>{item.rate}</b>
+              4 Kod: {item.code} Maç: {item.game} <b>Oran: {item.rate}</b>
             </li>
           ))}
         </ul>
       )}
-      <div>Toplam Tutar : {ctx.totalPrice} TL</div>
+      <div className="coupon-total">Toplam Tutar : {ctx.totalPrice} TL</div>
     </div>
   );
 };
