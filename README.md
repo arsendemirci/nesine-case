@@ -7,9 +7,6 @@
 [![React][React.js]][React-url] 
 > This is a case study project from nesine.com 
 
-
-
-  
 ## :hammer: Development setup
 
 ```sh
@@ -39,7 +36,6 @@ npm  run  start
 
 ## :triangular_flag_on_post: Noted Todos
  - There are various techniques can be used to improve initial data loading performance such as data table windowing, lazy-loading, infinite scrolling, virtualization
- - table could be virtualized to improve initial loading performance
  - axios api interface setup to retrieve data
  - webpack css/scss modules configuration
  - more dynamic mechanism could be implemented in ItemRow.jsx 
