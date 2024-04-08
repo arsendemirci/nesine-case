@@ -19,10 +19,25 @@
     li {
       padding: 10px;
       border-bottom: 1px solid;
+      animation: appear 0.4s;
     }
   }
   .coupon-total {
     font-size: 20px;
     font-weight: 600;
+  }
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 20px);
+  }
+  70% {
+
+    transform: translate(-6px, -6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }
